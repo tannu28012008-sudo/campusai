@@ -1,17 +1,28 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import { ThemeToggle } from "./ThemeContext";
 
 function App() {
-  const [page, setPage] = useState("home");
+  const [page, setPage] = React.useState("home");
 
   if (page === "login") {
-    return <Login onLogin={() => setPage("dashboard")} />;
+    return (
+      <div className="page-shell">
+        <ThemeToggle />
+        <Login onLogin={() => setPage("dashboard")} />
+      </div>
+    );
   }
 
   if (page === "dashboard") {
-    return <Dashboard />;
+    return (
+      <div className="page-shell">
+        <ThemeToggle />
+        <Dashboard />
+      </div>
+    );
   }
 
   return (
@@ -20,14 +31,18 @@ function App() {
         <div className="logo">
           Campus<span>AI</span>
         </div>
-        <div className="badge">AI-Powered Campus</div>
+
+        <div className="nav-right">
+          <div className="badge">AI-Powered Campus</div>
+          <ThemeToggle />
+        </div>
       </nav>
 
       <section className="hero">
-      <h1 className="hero-title">
-      <span className="hero-line">Your Campus.</span>
-      <span className="hero-line purple-text">Understood.</span>
-      </h1>
+        <h1 className="hero-title">
+          <span className="hero-line">Your Campus.</span>
+          <span className="hero-line purple-text">Understood.</span>
+        </h1>
 
         <p>
           Everything is announced. Almost nothing is understood.

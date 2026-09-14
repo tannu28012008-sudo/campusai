@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { ThemeToggle } from "../ThemeContext";
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,9 +46,11 @@ function Login({ onLogin }) {
       "Password reset instructions will be sent to your college email."
     );
   };
-
   return (
     <div className="login-page">
+
+      <ThemeToggle />
+
       <div className="login-card">
 
         <div className="login-brand">

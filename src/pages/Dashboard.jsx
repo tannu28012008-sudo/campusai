@@ -7,7 +7,7 @@
  * - Where both files implemented the same block differently, the expanded/newer
  *   implementation is kept to prevent duplicate state, handlers, or JSX.
  */
-
+import { ThemeToggle } from "../ThemeContext";
 import { useEffect, useRef, useState } from "react";
 import AIPage from "./AIPage";
 import Profile from "./Profile";
