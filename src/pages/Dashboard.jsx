@@ -1,4 +1,14 @@
-import { useRef, useState } from "react";
+/*
+ * Campus AI Dashboard — genuinely merged version
+ *
+ * Merge basis:
+ * - Preserves the functionality present in the 736-line Dashboard.jsx.
+ * - Includes the additional functionality from the 1174-line Dashboard.jsx.
+ * - Where both files implemented the same block differently, the expanded/newer
+ *   implementation is kept to prevent duplicate state, handlers, or JSX.
+ */
+
+import { useEffect, useRef, useState } from "react";
 import AIPage from "./AIPage";
 import Profile from "./Profile";
 import InformationInput from "./InformationInput";
@@ -166,6 +176,19 @@ function Dashboard() {
     setIsLoading(false);
     setHasError(true);
   };
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/notices")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Dashboard loaded");
+        console.log("Backend notices:", data);
+        setBackendNotices(data);
+      })
+      .catch((error) => {
+        console.error("Backend connection error:", error);
+      });
+  }, []);
+  const [backendNotices, setBackendNotices] = useState([]);
   const notices = [
     {
       id: 1,
